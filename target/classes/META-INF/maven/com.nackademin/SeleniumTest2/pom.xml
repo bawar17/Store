@@ -10,7 +10,7 @@
 			<groupId>jUnit</groupId>
 			<artifactId>jUnit</artifactId>
 			<version>4.12</version>
-			<scope>runtime</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
