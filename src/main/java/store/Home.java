@@ -109,9 +109,9 @@ public class Home {
 
 	public void ProduktTitle(){
 
-		String ProduktTitle = driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[1]")).getText();
+		String ProduktTitle = driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[1]")).getText().substring(0, 10);
 		driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[1]")).click();
-		Assert.assertEquals(ProduktTitle,driver.findElement(By.xpath("//*[@id='single_product_page_container']/div/div[2]/h1")).getText());
+		Assert.assertEquals(ProduktTitle,driver.findElement(By.xpath("//*[@id='single_product_page_container']/div/div[2]/h1")).getText().substring(0, 10));
 
 	}
 	
@@ -127,10 +127,10 @@ public class Home {
 
 		String MoreDetail1 = driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[1]")).getAttribute("title");
 		driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[3]")).click();
-		Thread.sleep(1000);
-		String ExpectedDetails= driver.findElement(By.xpath("//*[@id='single_product_page_container']/div[1]/div[2]/h1")).getText();
+		Thread.sleep(3000);
+		String ExpectedDetails= driver.findElement(By.xpath("//*[@id='single_product_page_container']/div[1]/div[2]/h1")).getText().substring(1, 10);
 	
-		Assert.assertEquals(MoreDetail1,ExpectedDetails);
+		Assert.assertTrue(MoreDetail1.contains(ExpectedDetails));
 
 	}
 

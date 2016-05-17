@@ -1,8 +1,12 @@
 package store;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 
@@ -10,12 +14,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class CheckOut{
-	
+
 	WebDriver driver = new FirefoxDriver();
 
 	public void goToPage(){
-	
-				driver.get("http://store.demoqa.com/");
+
+		driver.get("http://store.demoqa.com/");
 	}
 
 	public void closeDriver(){
@@ -34,7 +38,11 @@ public class CheckOut{
 	public void Remove() throws InterruptedException {
 		driver.findElement(By.className("buynow")).click();
 		driver.findElement(By.className("wpsc_buy_button")).click();
-		Thread.sleep(2000);
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='fancy_notification_content']/a[1]")));
+		  wait.pollingEvery(100, TimeUnit.MILLISECONDS);
+		  
 		driver.findElement(By.className("go_to_checkout")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/table/tbody/tr[2]/td[6]/form/input[4]")).click();
@@ -57,9 +65,9 @@ public class CheckOut{
 	public void RemovePro() throws InterruptedException {
 		driver.findElement(By.className("buynow")).click();
 		driver.findElement(By.className("wpsc_buy_button")).click();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		driver.findElement(By.className("go_to_checkout")).click();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/table/tbody/tr[2]/td[3]/form/input[1]")).sendKeys(Keys.BACK_SPACE, "0");
 		driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/table/tbody/tr[2]/td[3]/form/input[4]")).click();
 		String empty = driver.findElement(By.className("entry-content")).getText();
@@ -68,11 +76,16 @@ public class CheckOut{
 
 
 	public void YourCart() throws InterruptedException {
+
+
 		driver.findElement(By.className("buynow")).click();
 		driver.findElement(By.className("wpsc_buy_button")).click();
-		Thread.sleep(3000);
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='fancy_notification_content']/a[1]")));
+		wait.pollingEvery(100, TimeUnit.MILLISECONDS);
+
 		driver.findElement(By.className("go_to_checkout")).click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		String headerColor = driver.findElement(By.xpath("//*[@id='post-29']/div/div[1]/ul/li[1]")).getCssValue("color");
 		Assert.assertEquals("some message", "rgba(0, 0, 0, 1)", headerColor);
 

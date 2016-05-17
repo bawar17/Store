@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AddToCart {
 	
@@ -42,10 +44,12 @@ public class AddToCart {
 	public void GoToChekOut() throws InterruptedException {
 		driver.findElement(By.cssSelector(".slide")).click();
 		  driver.findElement(By.className("wpsc_buy_button")).click();
-		  TimeUnit.MILLISECONDS.sleep(2000);
+		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='fancy_notification_content']/a[1]")));
+		  wait.pollingEvery(100, TimeUnit.MILLISECONDS);
 		  driver.findElement(By.xpath("//*[@id='fancy_notification_content']/a[1]")).click();
 		  
-		  TimeUnit.MILLISECONDS.sleep(2000);
+		  TimeUnit.MILLISECONDS.sleep(5000);
 		  
 		  Assert.assertTrue("Error the checkout button does not work!", driver.getTitle().contains("Checkout"));
 		  
@@ -59,10 +63,10 @@ public class AddToCart {
 		  
 		  String selectedProdName = driver.findElement(By.className("prodtitle")).getText();
 		  driver.findElement(By.className("wpsc_buy_button")).click();
-		  TimeUnit.MILLISECONDS.sleep(2000);
+		  TimeUnit.MILLISECONDS.sleep(5000);
 		  
 		  driver.findElement(By.xpath("//*[@id='fancy_notification_content']/a[2]")).click();
-		  TimeUnit.MILLISECONDS.sleep(2000);
+		  TimeUnit.MILLISECONDS.sleep(5000);
 		  
 		  Assert.assertTrue("Error the Continue Shopping button does not work!", driver.getTitle().contains(selectedProdName));
 		  
