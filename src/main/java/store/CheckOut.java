@@ -1,11 +1,8 @@
 package store;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 
 
@@ -14,12 +11,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class CheckOut{
 	
-		WebDriver driver = new ChromeDriver();
+	WebDriver driver = new FirefoxDriver();
 
 	public void goToPage(){
 	
-		System.setProperty("webdriver.chrome.driver", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe");
-		driver.get("http://store.demoqa.com/");
+				driver.get("http://store.demoqa.com/");
 	}
 
 	public void closeDriver(){
