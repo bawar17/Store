@@ -46,8 +46,8 @@ public class Home {
 		driver.findElement(By.linkText("More Info >")).click();
 	}
 
-	public void findSlideAndLoop() throws InterruptedException{
-		driver.findElement(By.xpath("//*[@id='slides']"));
+	public int findSlideAndLoop() throws InterruptedException{
+	//	driver.findElement(By.xpath("//*[@id='slides']"));
 		ArrayList<String> listOfSlides = new ArrayList<String>();
 		String currentSlide;
 		for(int i=0;i<5;i++) {
@@ -62,9 +62,11 @@ public class Home {
 
 			Thread.sleep(5000);
 		}
-
-		Assert.assertEquals("Error unexpected number of slides", 3, listOfSlides.size());
+		return listOfSlides.size();
+		
 	}
+	
+	
 
 	public void verifyManuellSlide() throws InterruptedException{
 		driver.findElement(By.xpath("//*[@id='slide_menu']/a[2]")).click();
@@ -79,58 +81,41 @@ public class Home {
 
 	}
 
+	
 
-	public void LatestBlogPost(){
-		driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[2]/img"));
-		ArrayList<String> listOfSlides = new ArrayList<String>();
-		String currentSlide;
-		for(int i=0;i<5;i++) {
-			currentSlide = driver.findElement(By.cssSelector(".product_description>h2")).getText();
-			if( false == listOfSlides.contains(currentSlide) ) {
-				listOfSlides.add(currentSlide);
 
-				if( listOfSlides.size() == 4 ) {
-					break;
-				}
-			}
 
-		}
-
-		Assert.assertEquals("Error unexpected number of slides", 4, listOfSlides.size());
-	}
-
-	public void latestBlogPost(){
+	public int latestBlogPost(){
 		List<WebElement> list = driver.findElements(By.xpath("//*[@id='footer']/section[2]/ul/li"));
-		Assert.assertEquals("Error unexpected number of items", 4, list.size());
+		return list.size();
 
 	}
 
 
 
-	public void ProduktTitle(){
+	public String LatestBlogProduktTitle(){
 
 		String ProduktTitle = driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[1]")).getText().substring(0, 10);
+		return ProduktTitle;
+		
+	}
+	public String ProduktTitle(){
 		driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[1]")).click();
-		Assert.assertEquals(ProduktTitle,driver.findElement(By.xpath("//*[@id='single_product_page_container']/div/div[2]/h1")).getText().substring(0, 10));
+		return  driver.findElement(By.xpath("//*[@id='single_product_page_container']/div/div[2]/h1")).getText().substring(0, 10);
+		
 
 	}
 	
-	public void ProduktImage(){
+	public String ProduktImage(){
 
-		String ProImage = driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[2]/img")).getText();
 		driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[2]/img")).click();
-		Assert.assertEquals(ProImage,driver.findElement(By.xpath("//*[@id='single_product_page_container']/div[1]/div[1]/a/img[1]")).getText());
-
+		return  driver.findElement(By.xpath("//*[@id='single_product_page_container']/div/div[2]/h1")).getText().substring(0, 10);
 	}
 	
-	public void MoreDetails() throws InterruptedException{
+	public String MoreDetails() throws InterruptedException{
 
-		String MoreDetail1 = driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[1]")).getAttribute("title");
 		driver.findElement(By.xpath("//*[@id='footer']/section[2]/ul/li[1]/a[3]")).click();
-		Thread.sleep(3000);
-		String ExpectedDetails= driver.findElement(By.xpath("//*[@id='single_product_page_container']/div[1]/div[2]/h1")).getText().substring(1, 10);
-	
-		Assert.assertTrue(MoreDetail1.contains(ExpectedDetails));
+		return  driver.findElement(By.xpath("//*[@id='single_product_page_container']/div/div[2]/h1")).getText().substring(0, 10);	
 
 	}
 

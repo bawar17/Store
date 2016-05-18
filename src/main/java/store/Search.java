@@ -17,10 +17,9 @@ public class Search {
 
 	}
 
-	public void Search1() throws InterruptedException {
+	public String Search1(String prodName) throws InterruptedException {
 
 
-		String prodName = "mouse";
 		driver.findElement(By.name("s")).clear();
 		driver.findElement(By.name("s")).sendKeys(prodName);
 		driver.findElement(By.name("s")).sendKeys(Keys.RETURN);
@@ -29,9 +28,9 @@ public class Search {
 
 		String searchResult = obj.getAttribute("alt").toString();
 		System.out.println("s : "+ searchResult);
+		return searchResult;
 
-		Assert.assertEquals("Error the search for product " +prodName + " failed", true, searchResult.contains("Mouse"));
+		
 
-		driver.close();
 	}
 }

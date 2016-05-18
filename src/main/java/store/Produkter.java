@@ -45,7 +45,7 @@ public class Produkter {
 
 	}
 
-	public void AddToCart() throws InterruptedException{
+	public int AddToCart() throws InterruptedException{
 
 		int count1 = Integer.parseInt(driver.findElement(By.className("count")).getText());
 		driver.findElement(By.className("wpsc_buy_button")).click();
@@ -54,9 +54,12 @@ public class Produkter {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='fancy_notification_content']/a[1]")));
 		
 		wait.pollingEvery(100, TimeUnit.MILLISECONDS);
-		Thread.sleep(1000);
+		
+		driver.findElement(By.className("go_to_checkout")).click();
+		
 		int count2 = Integer.parseInt(driver.findElement(By.className("count")).getText());
-		Assert.assertEquals("Error unexpected number of items in the cart", count1 + 1, count2);
+		return count2;
+		
 
 
 

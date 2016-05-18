@@ -1,6 +1,7 @@
 package store;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +22,9 @@ public class TestSearch {
 	
 	@Test
 	public void Search1()throws InterruptedException{
-		start.Search1();
+		String searchResult = start.Search1("mouse");
+		
+		Assert.assertEquals("Error the search for product failed", true, searchResult.contains("Mouse"));
 		
 	}
 	

@@ -34,7 +34,10 @@ public class TestPro {
 
 	@Test 
 	public void AddToCart() throws InterruptedException{
-		start.AddToCart();	}
+		int count2 = start.AddToCart();
+		Assert.assertEquals("Error unexpected number of items in the cart", 1, count2);
+		
+	}
 
 
 

@@ -1,8 +1,12 @@
 package store;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestHome {
 
@@ -35,7 +39,9 @@ public class TestHome {
 
 	@Test
 	public void VerifySlideFunction() throws InterruptedException{
-		start.findSlideAndLoop();
+		int listOfSlides = start.findSlideAndLoop();
+		Assert.assertEquals("Error unexpected number of slides", 3, listOfSlides);
+
 	}
 
 
@@ -47,21 +53,26 @@ public class TestHome {
 
 	@Test
 	public void latestBlogPost(){
-		start.latestBlogPost();
+		int latestBlog =start.latestBlogPost();
+		Assert.assertEquals("Error unexpected number of items", 4, latestBlog);
 	}
 
 	@Test
 	public void ProduktTitle(){
-		start.ProduktTitle();
+
+		Assert.assertEquals( start.LatestBlogProduktTitle(),start.ProduktTitle() );
+
+
+
 	}
 	@Test
 	public void ProduktImage(){
-		start.ProduktImage();
+		Assert.assertEquals( start.LatestBlogProduktTitle(), start.ProduktImage() );
 	}
 
 	@Test
 	public void MoreDetails()throws InterruptedException{
-		start.MoreDetails();
+		Assert.assertEquals( start.LatestBlogProduktTitle(), start.MoreDetails() );
 	}
 
 
